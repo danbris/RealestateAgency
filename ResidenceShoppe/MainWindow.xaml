@@ -15,7 +15,7 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Text="{Binding FloorNumber}" />
         <Button Grid.Row="1"
-                Click="ButtonBase_OnClick"
+                Command="{Binding IncreaseFloorNumberCommand}"
                 Content="ChangeText" />
     </Grid>
 </Window>

@@ -8,5 +8,7 @@ namespace ResidenceBusinessLogic
 {
     public class Class1
     {
+        
     }
+
 }

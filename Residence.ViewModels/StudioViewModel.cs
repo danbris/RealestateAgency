@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Prism.Commands;
+using Prism.Mvvm;
 
 namespace Residence.ViewModels
 {
-    public class StudioViewModel: ViewModelBase
+    public class StudioViewModel: BindableBase
     {
         private int _number;
         private int _floorNumber;
@@ -17,7 +18,7 @@ namespace Residence.ViewModels
         public int FloorNumber
         {
             get => _floorNumber;
-            set => SetValue(ref _floorNumber, value, nameof(FloorNumber));
+            set => SetProperty(ref _floorNumber, value);
         }
 
         public ICommand IncreaseFloorNumberCommand =>

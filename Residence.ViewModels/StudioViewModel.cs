@@ -14,7 +14,7 @@ namespace Residence.ViewModels
         private int _number;
         private int _floorNumber;
         private ICommand _increaseFloorNumberCommand;
-
+         
         public int FloorNumber
         {
             get => _floorNumber;

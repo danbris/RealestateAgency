@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Residence.DataLayer;
 
 namespace ResidenceShoppe
 {
@@ -28,6 +29,10 @@ namespace ResidenceShoppe
         {
             InitializeComponent();
             DataContext = StudioVM;
+
+            ResidenceContext context = new ResidenceContext();
+            dgHousing.ItemsSource = context.Houses.ToList();
+            dgComodities.ItemsSource = context.Comodities.ToList();
         }
     }
 }

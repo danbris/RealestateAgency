@@ -37,5 +37,35 @@ namespace ResidenceBusinessLogic
                 }).ToList()
             }).ToList();
         }
+
+        public bool SaveHousing(HousingDto housing)
+        {
+            var operationSucceded = false;
+            if (housing.ID > 0)
+            {
+                //this is an update operation
+                operationSucceded = UpdateHousing(housing);
+            }
+            else
+            {
+                //this is an add operation
+                operationSucceded = AddNewHousing(housing);
+            }
+
+            return operationSucceded;
+        }
+
+        private bool AddNewHousing(HousingDto housing)
+        {
+            return false;
+        }
+
+        private bool UpdateHousing(HousingDto housing)
+        {
+
+
+
+            return false;
+        }
     }
 }

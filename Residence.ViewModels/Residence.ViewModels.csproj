@@ -53,11 +53,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HousingViewModel.cs" />
+    <Compile Include="MainViewModel.cs" />
     <Compile Include="StudioViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Residence.DataLayer\Residence.DataLayer.csproj">
+      <Project>{B62BDB1D-F78B-4216-BA79-E15669983B99}</Project>
+      <Name>Residence.DataLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ResidenceBusinessLogic\Residence.BusinessLogic.csproj">
+      <Project>{EBDD9CE5-5F7D-443D-8F24-6917B5A3721B}</Project>
+      <Name>Residence.BusinessLogic</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

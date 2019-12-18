@@ -24,10 +24,13 @@ namespace ResidenceShoppe
     {
         public StudioViewModel StudioVM { get; } = new StudioViewModel();
 
+        public MainViewModel MainVM { get; } = new MainViewModel();
+
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = StudioVM;
+            DataContext = MainVM;
+            
         }
     }
 }

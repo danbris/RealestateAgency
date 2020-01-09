@@ -118,6 +118,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Residence.DataLayer\Residence.DataLayer.csproj">
+      <Project>{b62bdb1d-f78b-4216-ba79-e15669983b99}</Project>
+      <Name>Residence.DataLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Residence.ViewModels\Residence.ViewModels.csproj">
       <Project>{90D76EF9-44ED-4AE5-8925-24295575789D}</Project>
       <Name>Residence.ViewModels</Name>

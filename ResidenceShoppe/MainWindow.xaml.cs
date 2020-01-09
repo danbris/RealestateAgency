@@ -1,4 +1,5 @@
-﻿using Residence.ViewModels;
+﻿using Residence.DataLayer;
+using Residence.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,7 +31,7 @@ namespace ResidenceShoppe
         {
             InitializeComponent();
             DataContext = MainVM;
-            
+            //NewHousingType.ItemsSource = MainVM.GetHouseTypeValues();          
         }
     }
 }

@@ -3,21 +3,26 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:ResidenceShoppe"
+        xmlns:viewModel ="clr-namespace:Residence.ViewModels;assembly=Residence.ViewModels"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Title="MainWindow"
         Width="1076.822"
         Height="654.665"
-        mc:Ignorable="d">
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance viewModel:MainViewModel}"> 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="904*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />
             <RowDefinition Height="100" />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="{Binding Path=StudioVM.FloorNumber}" />
+        <TextBlock Grid.Row="0" Text="{Binding Path=StudioVM.FloorNumber}" Grid.ColumnSpan="2" />
         <Button Grid.Row="1"
                 Command="{Binding IncreaseFloorNumberCommand}"
-                Content="ChangeText" />
-        <DataGrid Name="dgHousing"
+                Content="ChangeText" Margin="0,0,830,76" />
+        <DataGrid x:Name="dgHousing"
                   ItemsSource="{Binding Houses}"
                   AutoGenerateColumns="False"
                   Grid.Row="1"
@@ -25,7 +30,9 @@
                   Height="257"
                   Margin="0,111,0,-267"
                   HorizontalAlignment="Left"
-                  VerticalAlignment="Top" >
+                  VerticalAlignment="Top" Grid.ColumnSpan="2"
+                  IsReadOnly="True"
+                  SelectedItem="{Binding SelectedItem}">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Housing Type" 
                                     Binding="{Binding HousingType}" />
@@ -35,20 +42,36 @@
                                     Binding="{Binding NoOfRooms}" />
                 <DataGridTextColumn Header="Description" 
                                     Binding="{Binding Description}" 
-                                    Width="*"/>
+                                    Width="300"/>
                 <DataGridTextColumn Header="ComoditiesSummary" 
-                                    Binding="{Binding ComoditiesSummary}" />
+                                    Binding="{Binding ComoditiesSummary}" 
+                                    Width="300"/>
 
-                
+                <DataGridTemplateColumn Header="Edit">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="buttonEdit" Content="Edit" Command="{Binding Path=DataContext.Edit, RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="View">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="buttonView" Content="View" Command="{Binding Path=DataContext.View, ElementName=dgHousing}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
 
             </DataGrid.Columns>
         </DataGrid>
         <DataGrid Name="dgComodities"
                   Grid.Row="1"
                   Width="1059"
-                  Height="220"
-                  Margin="0,373,0,-492"
+                  Height="121"
+                  Margin="0,472,0,-492"
                   HorizontalAlignment="Left"
-                  VerticalAlignment="Top" />
+                  VerticalAlignment="Top" Grid.ColumnSpan="2" />
+        <ComboBox Name="NewHousingType" HorizontalAlignment="Left" Height="34" Margin="102,390,0,-323" Grid.Row="1" VerticalAlignment="Top" Width="202" 
+                  ItemsSource = "{Binding HousingTypes}" DisplayMemberPath="Value"/>
     </Grid>
 </Window>

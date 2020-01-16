@@ -13,8 +13,14 @@ namespace Residence.ViewModels
 {
     public class HousingViewModel : BindableBase
     {
+        #region Variables
+
         private readonly HousingDto _housingDto;
 
+        #endregion
+
+        #region Properties 
+        public int ID => _housingDto.ID;
         public HousingType HousingType => _housingDto.HousingType;
         public double Surface => _housingDto.Surface;
         public int NoOfRooms => _housingDto.NoOfRooms;
@@ -27,11 +33,14 @@ namespace Residence.ViewModels
             ? string.Empty
             : string.Join(", ", _housingDto.Comodities.Select(x => x.Description));
 
+        #endregion
+
+        #region Constructor
         public HousingViewModel(HousingDto housing)
         {
             _housingDto = housing;
         }
 
-        
+        #endregion
     }
 }

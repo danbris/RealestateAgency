@@ -1,0 +1,28 @@
+﻿<UserControl x:Class="ResidenceShoppe.AddView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ResidenceShoppe"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Description" HorizontalAlignment="Left" Height="34" Margin="10,175,0,0" VerticalAlignment="Top" Width="85" RenderTransformOrigin="3.695,1.874"/>
+        <TextBox Name="Description" Height="130" VerticalAlignment="Top" Margin="100,175,19,0" 
+           Text="{Binding Description}"/>
+        <Label Content="Surface" HorizontalAlignment="Left" Height="33" Margin="10,124,0,0" VerticalAlignment="Top" Width="85" RenderTransformOrigin="1.506,-7.403"/>
+        <TextBox Name = "Surface" Height="34" VerticalAlignment="Top" Margin="100,124,19,0" 
+           Text="{Binding Surface}"/>
+        <Label Content="No of rooms" HorizontalAlignment="Left" Height="34" Margin="10,70,0,0" VerticalAlignment="Top" Width="85" RenderTransformOrigin="3.695,1.874"/>
+        <TextBox Name = "NoOfRooms" Height="34" VerticalAlignment="Top" Margin="100,70,19,0" 
+           Text="{Binding NoOfRooms}"/>
+        <Label Content="Housing type" HorizontalAlignment="Left" Height="34" Margin="10,15,0,0" VerticalAlignment="Top" Width="85" RenderTransformOrigin="3.695,1.874"/>
+        <TextBox Name = "HousingType" Height="34" VerticalAlignment="Top" Margin="100,15,19,0" 
+           Text="{Binding HousingType}"/>
+        <Button Content="Add" HorizontalAlignment="Left" Height="44" Margin="100,310,0,0" VerticalAlignment="Top" Width="177"
+                />
+    </Grid>
+</UserControl>

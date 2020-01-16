@@ -13,7 +13,6 @@ namespace Residence.DataLayer
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<ResidenceContext, Migrations.Configuration>());
         }
-
         public DbSet<Housing> Houses { get; set; }
         public DbSet<Comodity> Comodities { get; set; }
     }

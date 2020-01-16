@@ -53,6 +53,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddViewModel.cs" />
+    <Compile Include="EditViewModel.cs" />
     <Compile Include="HousingViewModel.cs" />
     <Compile Include="MainViewModel.cs" />
     <Compile Include="StudioViewModel.cs" />

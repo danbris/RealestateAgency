@@ -1,8 +1,5 @@
-﻿using Residence.DataLayer;
-using Residence.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,19 +16,13 @@ using System.Windows.Shapes;
 namespace ResidenceShoppe
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for AddView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AddView : UserControl
     {
-        public StudioViewModel StudioVM { get; } = new StudioViewModel();
-        public MainViewModel MainVM { get; } = new MainViewModel();
-
-        public AddViewModel AddVM { get; } = new AddViewModel();
-        
-        public MainWindow()
+        public AddView()
         {
             InitializeComponent();
-            DataContext = MainVM;  
         }
     }
 }

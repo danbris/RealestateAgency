@@ -3,13 +3,22 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:ResidenceShoppe"
-        xmlns:viewModel ="clr-namespace:Residence.ViewModels;assembly=Residence.ViewModels"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Title="MainWindow"
         Width="1076.822"
-        Height="654.665"
+        Height="685.216"
         mc:Ignorable="d"
-        d:DataContext="{d:DesignInstance viewModel:MainViewModel}"> 
+        xmlns:viewModel ="clr-namespace:Residence.ViewModels;assembly=Residence.ViewModels"
+        xmlns:view ="clr-namespace:ResidenceShoppe"
+        d:DataContext="{d:DesignInstance viewModel:MainViewModel}">
+    <Window.Resources>
+        <DataTemplate DataType="x:Type viewModel:AddViewModel">
+            <view:AddView/>
+        </DataTemplate>
+        <DataTemplate DataType="x:Type viewModel:EditViewModel">
+            <view:EditView/>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="904*"/>
@@ -38,8 +47,14 @@
                                     Binding="{Binding HousingType}" />
                 <DataGridTextColumn Header="Surface" 
                                     Binding="{Binding Surface}" />
-                <DataGridTextColumn Header="No Of Rooms" 
+                <DataGridTextColumn Header="Rooms" 
                                     Binding="{Binding NoOfRooms}" />
+                <DataGridTextColumn Header="Flats" 
+                                    Binding="{Binding NoOfFlats}" />
+                <DataGridTextColumn Header="Flat number" 
+                                    Binding="{Binding FlatNo}" />
+                <DataGridTextColumn Header="House number" 
+                                    Binding="{Binding HouseNo}" />
                 <DataGridTextColumn Header="Description" 
                                     Binding="{Binding Description}" 
                                     Width="300"/>
@@ -61,17 +76,44 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Delete">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Name="buttonDelete" Content="Delete" Command="{Binding Path=DataContext.Delete, RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
 
             </DataGrid.Columns>
         </DataGrid>
         <DataGrid Name="dgComodities"
                   Grid.Row="1"
                   Width="1059"
-                  Height="121"
-                  Margin="0,472,0,-492"
+                  Height="38"
+                  Margin="0,587.2,0,-524.4"
                   HorizontalAlignment="Left"
-                  VerticalAlignment="Top" Grid.ColumnSpan="2" />
-        <ComboBox Name="NewHousingType" HorizontalAlignment="Left" Height="34" Margin="102,390,0,-323" Grid.Row="1" VerticalAlignment="Top" Width="202" 
+                  VerticalAlignment="Top" />
+        <ComboBox Name="NewHousingType" HorizontalAlignment="Left" Height="34" Margin="745,530.2,0,-463.4" Grid.Row="1" VerticalAlignment="Top" Width="202" 
                   ItemsSource = "{Binding HousingTypes}" DisplayMemberPath="Value"/>
+        <Label Content="Description" HorizontalAlignment="Left" Height="34" Margin="0,374.2,0,-307.4" VerticalAlignment="Top" Width="85" RenderTransformOrigin="3.695,1.874" Grid.Row="1"/>
+        <TextBox Name="Description" Height="34" VerticalAlignment="Top" Margin="90,374.2,749.4,-307.4" 
+           Text="{Binding DescriptionInEdit}" Grid.Row="1"/>
+        <Label Content="Surface" HorizontalAlignment="Left" Height="34" Margin="0,415.2,0,-348.4" VerticalAlignment="Top" Width="85" RenderTransformOrigin="3.695,1.874" Grid.Row="1"/>
+        <TextBox Name="Surface" Height="34" VerticalAlignment="Top" Margin="90,413.2,749.4,-346.4" 
+           Text="{Binding SurfaceInEdit}" Grid.Row="1"/>
+        <Label Content="NoOfRooms" HorizontalAlignment="Left" Height="34" Margin="0,454.2,0,-387.4" VerticalAlignment="Top" Width="85" RenderTransformOrigin="3.695,1.874" Grid.Row="1"/>
+        <TextBox Name="NoOfRooms" Height="34" VerticalAlignment="Top" Margin="90,452.2,749.4,-385.4" 
+           Text="{Binding NoOfRoomsInEdit}" Grid.Row="1"/>
+        <Label Content="NoOfFlats" HorizontalAlignment="Left" Height="34" Margin="331,454.2,0,-387.4" VerticalAlignment="Top" Width="85" RenderTransformOrigin="3.695,1.874" Grid.Row="1"/>
+        <TextBox Name="NoOfFlats" Height="34" VerticalAlignment="Top" Margin="421,454.2,418.4,-387.4" 
+           Text="{Binding NoOfFlatsInEdit}" Grid.Row="1"/>
+        <Label Content="FlatNo" HorizontalAlignment="Left" Height="34" Margin="331,419.2,0,-352.4" VerticalAlignment="Top" Width="85" RenderTransformOrigin="3.695,1.874" Grid.Row="1"/>
+        <TextBox Name="FlatNo" Height="34" VerticalAlignment="Top" Margin="421,413.2,418.4,-346.4" 
+           Text="{Binding FlatNoInEdit}" Grid.Row="1"/>
+        <Label Content="HouseNo" HorizontalAlignment="Left" Height="34" Margin="331,374.2,0,-307.4" VerticalAlignment="Top" Width="85" RenderTransformOrigin="3.695,1.874" Grid.Row="1"/>
+        <TextBox Name="HouseNo" Height="34" VerticalAlignment="Top" Margin="421,374.2,418.4,-307.4" 
+           Text="{Binding HouseNoInEdit}" Grid.Row="1"/>
+        <Button Name="buttonUpdate" Content="Update" Command="{Binding Update}" Margin="675,456.2,262.4,-387.4" Grid.Row="1"/>
+        <Button Name="buttonAdd" Content="Add" Command="{Binding Add}" Margin="675,412.2,262.4,-343.4" Grid.Row="1" RenderTransformOrigin="0.467,0.409"/>
     </Grid>
 </Window>

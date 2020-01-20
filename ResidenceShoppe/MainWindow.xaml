@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Title="MainWindow"
         Width="1076.822"
-        Height="685.216"
+        Height="763.083"
         mc:Ignorable="d"
         xmlns:viewModel ="clr-namespace:Residence.ViewModels;assembly=Residence.ViewModels"
         xmlns:view ="clr-namespace:ResidenceShoppe"
@@ -19,27 +19,27 @@
             <view:EditView/>
         </DataTemplate>
     </Window.Resources>
-    <Grid>
+    <Grid Margin="0,-25,-96.6,25">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="904*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />
-            <RowDefinition Height="100" />
+            <RowDefinition Height="102.4" />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="{Binding Path=StudioVM.FloorNumber}" Grid.ColumnSpan="2" />
+        <!--<TextBlock Grid.Row="0" Text="{Binding Path=StudioVM.FloorNumber}" Margin="0,0,-0.6,101.2" Grid.RowSpan="2" />
         <Button Grid.Row="1"
                 Command="{Binding IncreaseFloorNumberCommand}"
-                Content="ChangeText" Margin="0,0,830,76" />
+                Content="ChangeText" Margin="0,0.2,830.4,76.2" />-->
         <DataGrid x:Name="dgHousing"
                   ItemsSource="{Binding Houses}"
                   AutoGenerateColumns="False"
                   Grid.Row="1"
                   Width="1059"
-                  Height="257"
-                  Margin="0,111,0,-267"
+                  Height="230"
+                  Margin="0,17.2,0,-144"
                   HorizontalAlignment="Left"
-                  VerticalAlignment="Top" Grid.ColumnSpan="2"
+                  VerticalAlignment="Top"
                   IsReadOnly="True"
                   SelectedItem="{Binding SelectedItem}">
             <DataGrid.Columns>
@@ -65,55 +65,81 @@
                 <DataGridTemplateColumn Header="Edit">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Name="buttonEdit" Content="Edit" Command="{Binding Path=DataContext.Edit, RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
+                            <Button Name="buttonEdit" Command="{Binding Path=DataContext.Edit, RelativeSource={RelativeSource AncestorType=DataGrid}}">
+                                <DockPanel>
+                                    <Image Source="Icons/editIcon.ico" Width="30" Height="20" />
+                                </DockPanel>
+                            </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="View">
+                <!--<DataGridTemplateColumn Header="View">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Name="buttonView" Content="View" Command="{Binding Path=DataContext.View, ElementName=dgHousing}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                </DataGridTemplateColumn>-->
                 <DataGridTemplateColumn Header="Delete">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Name="buttonDelete" Content="Delete" Command="{Binding Path=DataContext.Delete, RelativeSource={RelativeSource AncestorType=DataGrid}}"/>
+                            <Button Name="buttonDelete" Command="{Binding Path=DataContext.Delete, RelativeSource={RelativeSource AncestorType=DataGrid}}">
+                                <DockPanel>
+                                    <Image Source = "Icons/deleteIcon.ico" Width="20"/>
+                                </DockPanel>
+                            </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-
             </DataGrid.Columns>
         </DataGrid>
         <DataGrid Name="dgComodities"
                   Grid.Row="1"
                   Width="1059"
-                  Height="38"
-                  Margin="0,587.2,0,-524.4"
+                  Height="87"
+                  Margin="0,616.2,0,-600"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top" />
-        <ComboBox Name="NewHousingType" HorizontalAlignment="Left" Height="34" Margin="745,530.2,0,-463.4" Grid.Row="1" VerticalAlignment="Top" Width="202" 
-                  ItemsSource = "{Binding HousingTypes}" DisplayMemberPath="Value"/>
-        <Label Content="Description" HorizontalAlignment="Left" Height="34" Margin="0,374.2,0,-307.4" VerticalAlignment="Top" Width="85" RenderTransformOrigin="3.695,1.874" Grid.Row="1"/>
-        <TextBox Name="Description" Height="34" VerticalAlignment="Top" Margin="90,374.2,749.4,-307.4" 
+        <!--<Label Content="Residence type" HorizontalAlignment="Left" Height="34" Margin="886,515.2,0,-446.8" VerticalAlignment="Top" Width="85" RenderTransformOrigin="3.695,1.874" Grid.Row="1"/>
+        <ComboBox Name="NewHousingType" HorizontalAlignment="Left" Height="34" Margin="871,554.2,0,-485.8" Grid.Row="1" VerticalAlignment="Top" Width="100" 
+                  ItemsSource = "{Binding HousingTypes}" DisplayMemberPath="Value"/>-->
+        <Label Content="Description" HorizontalAlignment="Left" Height="34" Margin="22,323.2,0,-254" VerticalAlignment="Top" Width="85" RenderTransformOrigin="3.695,1.874" Grid.Row="1"/>
+        <TextBox Name="Description" Height="34" VerticalAlignment="Top" Margin="111,322.2,816.2,-253" 
            Text="{Binding DescriptionInEdit}" Grid.Row="1"/>
-        <Label Content="Surface" HorizontalAlignment="Left" Height="34" Margin="0,415.2,0,-348.4" VerticalAlignment="Top" Width="85" RenderTransformOrigin="3.695,1.874" Grid.Row="1"/>
-        <TextBox Name="Surface" Height="34" VerticalAlignment="Top" Margin="90,413.2,749.4,-346.4" 
+        <Label Content="Surface" HorizontalAlignment="Left" Height="34" Margin="22,364.2,0,-295" VerticalAlignment="Top" Width="85" RenderTransformOrigin="3.695,1.874" Grid.Row="1"/>
+        <TextBox Name="Surface" Height="34" VerticalAlignment="Top" Margin="111,362.2,816.2,-293" 
            Text="{Binding SurfaceInEdit}" Grid.Row="1"/>
-        <Label Content="NoOfRooms" HorizontalAlignment="Left" Height="34" Margin="0,454.2,0,-387.4" VerticalAlignment="Top" Width="85" RenderTransformOrigin="3.695,1.874" Grid.Row="1"/>
-        <TextBox Name="NoOfRooms" Height="34" VerticalAlignment="Top" Margin="90,452.2,749.4,-385.4" 
+        <Label Content="NoOfRooms" HorizontalAlignment="Left" Height="34" Margin="22,403.2,0,-334" VerticalAlignment="Top" Width="85" RenderTransformOrigin="3.695,1.874" Grid.Row="1"/>
+        <TextBox Name="NoOfRooms" Height="34" VerticalAlignment="Top" Margin="111,401.2,816.2,-332" 
            Text="{Binding NoOfRoomsInEdit}" Grid.Row="1"/>
-        <Label Content="NoOfFlats" HorizontalAlignment="Left" Height="34" Margin="331,454.2,0,-387.4" VerticalAlignment="Top" Width="85" RenderTransformOrigin="3.695,1.874" Grid.Row="1"/>
-        <TextBox Name="NoOfFlats" Height="34" VerticalAlignment="Top" Margin="421,454.2,418.4,-387.4" 
+        <Label Content="NoOfFlats" HorizontalAlignment="Left" Height="34" Margin="363,401.2,0,-332" VerticalAlignment="Top" Width="85" RenderTransformOrigin="3.695,1.874" Grid.Row="1"/>
+        <TextBox Name="NoOfFlats" Height="34" VerticalAlignment="Top" Margin="453,401.2,450.2,-332" 
            Text="{Binding NoOfFlatsInEdit}" Grid.Row="1"/>
-        <Label Content="FlatNo" HorizontalAlignment="Left" Height="34" Margin="331,419.2,0,-352.4" VerticalAlignment="Top" Width="85" RenderTransformOrigin="3.695,1.874" Grid.Row="1"/>
-        <TextBox Name="FlatNo" Height="34" VerticalAlignment="Top" Margin="421,413.2,418.4,-346.4" 
+        <Label Content="FlatNo" HorizontalAlignment="Left" Height="34" Margin="363,366.2,0,-297" VerticalAlignment="Top" Width="85" RenderTransformOrigin="3.695,1.874" Grid.Row="1"/>
+        <TextBox Name="FlatNo" Height="34" VerticalAlignment="Top" Margin="453,360.2,450.2,-291" 
            Text="{Binding FlatNoInEdit}" Grid.Row="1"/>
-        <Label Content="HouseNo" HorizontalAlignment="Left" Height="34" Margin="331,374.2,0,-307.4" VerticalAlignment="Top" Width="85" RenderTransformOrigin="3.695,1.874" Grid.Row="1"/>
-        <TextBox Name="HouseNo" Height="34" VerticalAlignment="Top" Margin="421,374.2,418.4,-307.4" 
+        <Label Content="HouseNo" HorizontalAlignment="Left" Height="34" Margin="363,321.2,0,-252" VerticalAlignment="Top" Width="85" RenderTransformOrigin="3.695,1.874" Grid.Row="1"/>
+        <TextBox Name="HouseNo" Height="34" VerticalAlignment="Top" Margin="453,321.2,450.2,-252" 
            Text="{Binding HouseNoInEdit}" Grid.Row="1"/>
-        <Button Name="buttonUpdate" Content="Update" Command="{Binding Update}" Margin="675,456.2,262.4,-387.4" Grid.Row="1"/>
-        <Button Name="buttonAdd" Content="Add" Command="{Binding Add}" Margin="675,412.2,262.4,-343.4" Grid.Row="1" RenderTransformOrigin="0.467,0.409"/>
+        <Label Content="Description" HorizontalAlignment="Left" Height="34" Margin="22,464.2,0,-395" VerticalAlignment="Top" Width="85" RenderTransformOrigin="3.695,1.874" Grid.Row="1"/>
+        <TextBox Name="DescriptionToAdd" Height="34" VerticalAlignment="Top" Margin="111,463.2,816.2,-394" 
+           Text="{Binding DescriptionToAdd}" Grid.Row="1"/>
+        <Label Content="Surface" HorizontalAlignment="Left" Height="34" Margin="22,505.2,0,-436" VerticalAlignment="Top" Width="85" RenderTransformOrigin="3.695,1.874" Grid.Row="1"/>
+        <TextBox Name="SurfaceToAdd" Height="34" VerticalAlignment="Top" Margin="111,503.2,816.2,-434" 
+           Text="{Binding SurfaceToAdd}" Grid.Row="1"/>
+        <Label Content="NoOfRooms" HorizontalAlignment="Left" Height="34" Margin="22,544.2,0,-475" VerticalAlignment="Top" Width="85" RenderTransformOrigin="3.695,1.874" Grid.Row="1"/>
+        <TextBox Name="NoOfRoomsToAdd" Height="34" VerticalAlignment="Top" Margin="111,542.2,816.2,-473" 
+           Text="{Binding NoOfRoomsToAdd}" Grid.Row="1"/>
+        <Label Content="NoOfFlats" HorizontalAlignment="Left" Height="34" Margin="363,543.2,0,-474" VerticalAlignment="Top" Width="85" RenderTransformOrigin="3.695,1.874" Grid.Row="1"/>
+        <TextBox Name="NoOfFlatsToAdd" Height="34" VerticalAlignment="Top" Margin="453,544.2,449.2,-475" 
+           Text="{Binding NoOfFlatsToAdd}" Grid.Row="1"/>
+        <Label Content="FlatNo" HorizontalAlignment="Left" Height="34" Margin="363,502.2,0,-433" VerticalAlignment="Top" Width="85" RenderTransformOrigin="3.695,1.874" Grid.Row="1"/>
+        <TextBox Name="FlatNoToAdd" Height="34" VerticalAlignment="Top" Margin="453,506.2,449.2,-437" 
+           Text="{Binding FlatNoToAdd}" Grid.Row="1"/>
+        <Label Content="HouseNo" HorizontalAlignment="Left" Height="34" Margin="363,464.2,0,-395" VerticalAlignment="Top" Width="85" RenderTransformOrigin="3.695,1.874" Grid.Row="1"/>
+        <TextBox Name="HouseNoToAdd" Height="34" VerticalAlignment="Top" Margin="453,464.2,449.2,-395" 
+           Text="{Binding HouseNoToAdd}" Grid.Row="1"/>
+        <Button Name="buttonUpdate" Content="Update" Command="{Binding Update}" Margin="736,401.2,290.2,-332" Grid.Row="1"/>
+        <Button Name="buttonAdd" Content="Add" Command="{Binding Add}" Margin="736,544.2,290.2,-475" Grid.Row="1" RenderTransformOrigin="0.467,0.409"/>
     </Grid>
 </Window>

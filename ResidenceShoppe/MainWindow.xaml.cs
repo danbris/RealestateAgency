@@ -23,11 +23,9 @@ namespace ResidenceShoppe
     /// </summary>
     public partial class MainWindow : Window
     {
-        public StudioViewModel StudioVM { get; } = new StudioViewModel();
+        //public StudioViewModel StudioVM { get; } = new StudioViewModel();
         public MainViewModel MainVM { get; } = new MainViewModel();
 
-        public AddViewModel AddVM { get; } = new AddViewModel();
-        
         public MainWindow()
         {
             InitializeComponent();

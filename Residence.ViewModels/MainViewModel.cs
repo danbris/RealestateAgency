@@ -21,22 +21,34 @@ namespace Residence.ViewModels
         private readonly HousingDataProvider _housingDataProvider; //instance of dataprovider
         private Dictionary<HousingType, string> _housingTypes = new Dictionary<HousingType, string>(); //instance of housingType
         private HousingViewModel _selectedItem; //selected house 
+        //for edit part
         private string _descriptionInEdit; //variable for description to handle edit/update 
         private double _surfaceInEdit; //variable for surface to handle edit/update 
-        private int _noOfRooms;
-        private int _noOfFlats;
-        private int _flatNo;
-        private int _houseNo;
-        private object _selectedViewModel; //used for navigation
+        private int _noOfRoomsInEdit;
+        private int _noOfFlatsInEdit;
+        private int _flatNoInEdit;
+        private int _houseNoInEdit;
+        //for add part
+        private string _descriptionToAdd; //variable for description to handle edit/update 
+        private double _surfaceIToAdd; //variable for surface to handle edit/update 
+        private int _noOfRoomsToAdd;
+        private int _noOfFlatsToAdd;
+        private int _flatNoToAdd;
+        private int _houseNoToAdd;
+        // private object _selectedViewModel; //used for navigation
 
         #endregion
 
         #region Properties
-        public object SelectedViewModel
-        {
-            get => _selectedViewModel;
-            set => SetProperty(ref _selectedViewModel, value);
-        }
+
+        //NAVIGATION PROPERTY
+        //public object SelectedViewModel
+        //{
+        //    get => _selectedViewModel;
+        //    set => SetProperty(ref _selectedViewModel, value);
+        //}
+
+        //EDIT PROPERTIES
         public string DescriptionInEdit
         {
             get => _descriptionInEdit;
@@ -49,23 +61,57 @@ namespace Residence.ViewModels
         }
         public int NoOfRoomsInEdit
         {
-            get => _noOfRooms;
-            set => SetProperty(ref _noOfRooms, value);
+            get => _noOfRoomsInEdit;
+            set => SetProperty(ref _noOfRoomsInEdit, value);
         }
+
         public int NoOfFlatsInEdit
         {
-            get => _noOfFlats;
-            set => SetProperty(ref _noOfFlats, value);
+            get => _noOfFlatsInEdit;
+            set => SetProperty(ref _noOfFlatsInEdit, value);
         }
         public int FlatNoInEdit
         {
-            get => _flatNo;
-            set => SetProperty(ref _flatNo, value);
+            get => _flatNoInEdit;
+            set => SetProperty(ref _flatNoInEdit, value);
         }
         public int HouseNoInEdit
         {
-            get => _houseNo;
-            set => SetProperty(ref _houseNo, value);
+            get => _houseNoInEdit;
+            set => SetProperty(ref _houseNoInEdit, value);
+        }
+
+        //ADD PART PROPERTIES
+        public string DescriptionToAdd
+        {
+            get => _descriptionToAdd;
+            set => SetProperty(ref _descriptionToAdd, value);
+        }
+        public double SurfaceToAdd
+        {
+            get => _surfaceIToAdd;
+            set => SetProperty(ref _surfaceIToAdd, value);
+        }
+        public int NoOfRoomsToAdd
+        {
+            get => _noOfRoomsToAdd;
+            set => SetProperty(ref _noOfRoomsToAdd, value);
+        }
+        
+        public int NoOfFlatsToAdd
+        {
+            get => _noOfFlatsToAdd;
+            set => SetProperty(ref _noOfFlatsToAdd, value);
+        }
+        public int FlatNoToAdd
+        {
+            get => _flatNoToAdd;
+            set => SetProperty(ref _flatNoToAdd, value);
+        }
+        public int HouseNoToAdd
+        {
+            get => _houseNoToAdd;
+            set => SetProperty(ref _houseNoToAdd, value);
         }
 
         public HousingViewModel SelectedItem 
@@ -86,16 +132,10 @@ namespace Residence.ViewModels
             set => SetProperty(ref _houses, value);
         }
 
+       
         #endregion
 
         #region Commands
-
-        /*private ICommand _runAddView;
-        public ICommand RunAddView => _runAddView ?? (_runAddView = new DelegateCommand(RunAddViewMethod));
-        private void RunAddViewMethod()
-        {
-            SelectedViewModel = new AddViewModel();
-        }*/
 
         private ICommand _edit;
         public ICommand Edit => _edit ?? (_edit = new DelegateCommand(EditExecuted));
@@ -151,15 +191,24 @@ namespace Residence.ViewModels
         {
             var newHouse = new HousingDto();
 
-            if (!string.IsNullOrEmpty(DescriptionInEdit))
-                newHouse.Description = DescriptionInEdit;
+            if (!string.IsNullOrEmpty(DescriptionToAdd))
+                newHouse.Description = DescriptionToAdd;
 
-            if (!double.IsNaN(SurfaceInEdit))
-                newHouse.Surface = SurfaceInEdit;
+            if (!double.IsNaN(SurfaceToAdd))
+                newHouse.Surface = SurfaceToAdd;
 
-            if (NoOfRoomsInEdit != 0)
-                newHouse.NoOfRooms = NoOfRoomsInEdit;
-            
+            if (NoOfRoomsToAdd != 0)
+                newHouse.NoOfRooms = NoOfRoomsToAdd;
+
+            if (NoOfFlatsToAdd != 0)
+                newHouse.NoOfFlats = NoOfFlatsToAdd;
+
+            if (FlatNoToAdd != 0)
+                newHouse.FlatNo = FlatNoToAdd;
+
+            if (HouseNoToAdd != 0)
+                newHouse.HouseNo = HouseNoToAdd;
+
             _housingDataProvider.SaveHousing(newHouse);
 
             LoadData();
@@ -187,6 +236,8 @@ namespace Residence.ViewModels
             Houses = new ObservableCollection<HousingViewModel>(housesDtos.Select(houseDto =>
                 new HousingViewModel(houseDto)));
         }
+
+        
 
         #endregion
     }

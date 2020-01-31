@@ -5,28 +5,42 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ResidenceShoppe"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
+             d:DesignHeight="800" d:DesignWidth="1300"
              xmlns:viewModel ="clr-namespace:Residence.ViewModels;assembly=Residence.ViewModels"
-             d:DataContext="{d:DesignInstance viewModel:EditViewModel}"
-             xmlns:prism="http://prismlibrary.com/"
-             prism:ViewModelLocator.AutoWireViewModel="True" >
-    <Grid>
+             d:DataContext="{d:DesignInstance viewModel:EditViewModel}">
+    <Grid RenderTransformOrigin="0.5,0.31">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Label Content="Description" HorizontalAlignment="Left" Height="34" Margin="10,175,0,0" VerticalAlignment="Top" Width="85" RenderTransformOrigin="3.695,1.874"/>
-        <TextBox Name="Description" Height="130" VerticalAlignment="Top" Margin="100,175,19,0" 
-           Text="{Binding Description}"/>
-        <Label Content="Surface" HorizontalAlignment="Left" Height="33" Margin="10,124,0,0" VerticalAlignment="Top" Width="85" RenderTransformOrigin="1.506,-7.403"/>
-        <TextBox Name = "Surface" Height="34" VerticalAlignment="Top" Margin="100,124,19,0" 
-           Text="{Binding Surface}"/>
-        <Label Content="No of rooms" HorizontalAlignment="Left" Height="34" Margin="10,70,0,0" VerticalAlignment="Top" Width="85" RenderTransformOrigin="3.695,1.874"/>
-        <TextBox Name = "NoOfRooms" Height="34" VerticalAlignment="Top" Margin="100,70,19,0" 
-           Text="{Binding NoOfRooms}"/>
-        <Label Content="Housing type" HorizontalAlignment="Left" Height="34" Margin="10,15,0,0" VerticalAlignment="Top" Width="85" RenderTransformOrigin="3.695,1.874"/>
-        <TextBox Name = "HousingType" Height="34" VerticalAlignment="Top" Margin="100,15,19,0" 
-           Text="{Binding HousingType}"/>
-        <Button Content="Update" HorizontalAlignment="Left" Height="44" Margin="100,310,0,0" VerticalAlignment="Top" Width="177"
+        <Label Content="Description" HorizontalAlignment="Left" Height="34" Margin="10,81,0,0" VerticalAlignment="Top" Width="132" RenderTransformOrigin="3.695,1.874"/>
+        <TextBox Name="Description" Height="34" VerticalAlignment="Top" Margin="148,81,337,0" 
+           Text="{Binding DescriptionInEdit}"/>
+        <Label Content="Surface" HorizontalAlignment="Left" Height="34" Margin="11,117,0,0" VerticalAlignment="Top" Width="132" RenderTransformOrigin="3.695,1.874"/>
+        <TextBox Name="Surface" Height="34" VerticalAlignment="Top" Margin="148,121,337,0" 
+           Text="{Binding SurfaceInEdit}"/>
+        <Label Content="NoOfRooms" HorizontalAlignment="Left" Height="34" Margin="10,162,0,0" VerticalAlignment="Top" Width="132" RenderTransformOrigin="3.695,1.874"/>
+        <TextBox Name="NoOfRooms" Height="34" VerticalAlignment="Top" Margin="148,160,337,0" 
+           Text="{Binding NoOfRoomsInEdit}"/>
+        <Label Content="NoOfFlats" HorizontalAlignment="Left" Height="34" Margin="10,273,0,0" VerticalAlignment="Top" Width="132" RenderTransformOrigin="3.695,1.874"/>
+        <TextBox Name="NoOfFlats" Height="34" VerticalAlignment="Top" Margin="148,280,336,0" 
+           Text="{Binding NoOfFlatsInEdit}" RenderTransformOrigin="0.5,0.5">
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.403"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <Label Content="FlatNo" HorizontalAlignment="Left" Height="34" Margin="10,239,0,0" VerticalAlignment="Top" Width="132" RenderTransformOrigin="3.695,1.874"/>
+        <TextBox Name="FlatNo" Height="34" VerticalAlignment="Top" Margin="148,239,337,0" 
+           Text="{Binding FlatNoInEdit}"/>
+        <Label Content="HouseNo" HorizontalAlignment="Left" Height="34" Margin="10,200,0,0" VerticalAlignment="Top" Width="132" RenderTransformOrigin="3.695,1.874"/>
+        <TextBox Name="HouseNo" Height="34" VerticalAlignment="Top" Margin="148,199,337,0" 
+           Text="{Binding HouseNoInEdit}"/>
+        <Button Content="Update" Command="{Binding Update}" HorizontalAlignment="Left" Height="44" Margin="148,325,0,0" VerticalAlignment="Top" Width="160"
                 />
+        <Button Content="Back" Command="{Binding Back}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="93" Height="38"/>
     </Grid>
 </UserControl>

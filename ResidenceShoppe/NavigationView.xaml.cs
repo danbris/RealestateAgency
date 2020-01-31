@@ -1,8 +1,5 @@
-﻿using Residence.DataLayer;
-using Residence.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,22 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ResidenceShoppe
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for NavigationView.xaml
     /// </summary>
-    public partial class MainWindow : UserControl
+    public partial class NavigationView : Window
     {
-        //public StudioViewModel StudioVM { get; } = new StudioViewModel();
-       // public MainViewModel MainVM { get; } = new MainViewModel();
-        public MainWindow()
+        public NavigationView()
         {
             InitializeComponent();
-           // DataContext = MainVM;  
         }
     }
 }

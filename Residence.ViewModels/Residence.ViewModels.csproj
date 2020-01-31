@@ -56,7 +56,9 @@
     <Compile Include="AddViewModel.cs" />
     <Compile Include="EditViewModel.cs" />
     <Compile Include="HousingViewModel.cs" />
+    <Compile Include="IPageViewModel.cs" />
     <Compile Include="MainViewModel.cs" />
+    <Compile Include="Mediator.cs" />
     <Compile Include="StudioViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

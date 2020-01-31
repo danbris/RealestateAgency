@@ -102,11 +102,13 @@ namespace ResidenceBusinessLogic
 
         #endregion
 
-        #region Private Methods for helping CRUD functionality
+        #region Private Methods
 
         private Housing DtoToEntity(HousingDto housing)
         {
             var entityObject = new Housing();
+
+            entityObject.HousingType = housing.HousingType;
             entityObject.Description = housing.Description;
             entityObject.Surface = housing.Surface;
             entityObject.NoOfRooms = housing.NoOfRooms;

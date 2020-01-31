@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Prism.Mvvm;
 using Residence.DataLayer;
-using ResidenceBusinessLogic;
 using ResidenceBusinessLogic.DTO;
 
 namespace Residence.ViewModels

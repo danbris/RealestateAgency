@@ -1,12 +1,6 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
 using ResidenceBusinessLogic;
-using ResidenceBusinessLogic.DTO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Residence.ViewModels
@@ -15,12 +9,12 @@ namespace Residence.ViewModels
     {
         #region Variables
         private int _id;
-        private string _descriptionInEdit; //variable for description to handle edit/update 
-        private double _surfaceInEdit; //variable for surface to handle edit/update 
-        private int _noOfRoomsInEdit;
-        private int _noOfFlatsInEdit;
-        private int _flatNoInEdit;
-        private int _houseNoInEdit;
+        private string _description; //variable for description to handle edit/update 
+        private double _surface; //variable for surface to handle edit/update 
+        private int _noOfRooms;
+        private int _noOfFlats;
+        private int _flatNo;
+        private int _houseNo;
         private readonly HousingDataProvider _housingDataProvider; //instance of dataprovider
 
         #endregion
@@ -31,36 +25,36 @@ namespace Residence.ViewModels
             get => _id;
             set => SetProperty(ref _id, value);
         }
-        public string DescriptionInEdit
+        public string Description
         {
-            get => _descriptionInEdit;
-            set => SetProperty(ref _descriptionInEdit, value);
+            get => _description;
+            set => SetProperty(ref _description, value);
         }
-        public double SurfaceInEdit
+        public double Surface
         {
-            get => _surfaceInEdit;
-            set => SetProperty(ref _surfaceInEdit, value);
+            get => _surface;
+            set => SetProperty(ref _surface, value);
         }
-        public int NoOfRoomsInEdit
+        public int NoOfRooms
         {
-            get => _noOfRoomsInEdit;
-            set => SetProperty(ref _noOfRoomsInEdit, value);
+            get => _noOfRooms;
+            set => SetProperty(ref _noOfRooms, value);
         }
 
-        public int NoOfFlatsInEdit
+        public int NoOfFlats
         {
-            get => _noOfFlatsInEdit;
-            set => SetProperty(ref _noOfFlatsInEdit, value);
+            get => _noOfFlats;
+            set => SetProperty(ref _noOfFlats, value);
         }
-        public int FlatNoInEdit
+        public int FlatNo
         {
-            get => _flatNoInEdit;
-            set => SetProperty(ref _flatNoInEdit, value);
+            get => _flatNo;
+            set => SetProperty(ref _flatNo, value);
         }
-        public int HouseNoInEdit
+        public int HouseNo
         {
-            get => _houseNoInEdit;
-            set => SetProperty(ref _houseNoInEdit, value);
+            get => _houseNo;
+            set => SetProperty(ref _houseNo, value);
         }
 
         #endregion
@@ -68,18 +62,18 @@ namespace Residence.ViewModels
         #region Commands and their private methods
 
         private ICommand _update;
-        public ICommand Update => _update ?? (_update = new DelegateCommand(UpdateExecuted));
+        public ICommand Update => _update ?? (_update = new DelegateCommand(UpdateExecute));
 
-        private void UpdateExecuted()
+        private void UpdateExecute()
         {
             var selectedHouseDto = _housingDataProvider.GetHouse(ID);
 
-            selectedHouseDto.Description = DescriptionInEdit;
-            selectedHouseDto.Surface = SurfaceInEdit;
-            selectedHouseDto.NoOfRooms = NoOfRoomsInEdit;
-            selectedHouseDto.NoOfFlats = NoOfFlatsInEdit;
-            selectedHouseDto.FlatNo = FlatNoInEdit;
-            selectedHouseDto.HouseNo = HouseNoInEdit;
+            selectedHouseDto.Description = Description;
+            selectedHouseDto.Surface = Surface;
+            selectedHouseDto.NoOfRooms = NoOfRooms;
+            selectedHouseDto.NoOfFlats = NoOfFlats;
+            selectedHouseDto.FlatNo = FlatNo;
+            selectedHouseDto.HouseNo = HouseNo;
 
             _housingDataProvider.SaveHousing(selectedHouseDto);
             BackToMainPage();
@@ -98,12 +92,12 @@ namespace Residence.ViewModels
         public EditViewModel(HousingViewModel selectedItem) 
         {
             ID = selectedItem.ID;
-            DescriptionInEdit = selectedItem.Description;
-            SurfaceInEdit = selectedItem.Surface;
-            NoOfRoomsInEdit = selectedItem.NoOfRooms;
-            NoOfFlatsInEdit = selectedItem.NoOfFlats;
-            FlatNoInEdit = selectedItem.FlatNo;
-            HouseNoInEdit = selectedItem.HouseNo;
+            Description = selectedItem.Description;
+            Surface = selectedItem.Surface;
+            NoOfRooms = selectedItem.NoOfRooms;
+            NoOfFlats = selectedItem.NoOfFlats;
+            FlatNo = selectedItem.FlatNo;
+            HouseNo = selectedItem.HouseNo;
 
             _housingDataProvider = new HousingDataProvider();
         }

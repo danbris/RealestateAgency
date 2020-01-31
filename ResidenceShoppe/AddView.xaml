@@ -14,22 +14,22 @@
                   ItemsSource = "{Binding HousingTypes}" DisplayMemberPath="Value" SelectedValue="{Binding SelectedHousingType}" SelectedValuePath="Value" IsSynchronizedWithCurrentItem="True" Width="715"/>
         <Label Content="Description" HorizontalAlignment="Left" Height="34" Margin="68,111,0,0" VerticalAlignment="Top" Width="98" RenderTransformOrigin="3.695,1.874"/>
         <TextBox Name="DescriptionToAdd" Height="34" VerticalAlignment="Top" Margin="188,111,388,0" 
-           Text="{Binding DescriptionToAdd}"/>
+           Text="{Binding Description}"/>
         <Label Content="Surface" HorizontalAlignment="Left" Height="34" Margin="68,189,0,0" VerticalAlignment="Top" Width="98" RenderTransformOrigin="3.695,1.874"/>
         <TextBox Name="SurfaceToAdd" Height="34" VerticalAlignment="Top" Margin="188,189,388,0" 
-           Text="{Binding SurfaceToAdd}"/>
+           Text="{Binding Surface}"/>
         <Label Content="NoOfRooms" HorizontalAlignment="Left" Height="34" Margin="68,267,0,0" VerticalAlignment="Top" Width="98" RenderTransformOrigin="3.695,1.874"/>
         <TextBox Name="NoOfRoomsToAdd" Height="34" VerticalAlignment="Top" Margin="188,267,388,0" 
-           Text="{Binding NoOfRoomsToAdd}"/>
+           Text="{Binding NoOfRooms}"/>
         <Label Content="NoOfFlats" HorizontalAlignment="Left" Height="34" Margin="68,306,0,0" VerticalAlignment="Top" Width="96" RenderTransformOrigin="3.695,1.874"/>
         <TextBox Name="NoOfFlatsToAdd" Height="34" VerticalAlignment="Top" Margin="188,306,388,0" 
-           Text="{Binding NoOfFlatsToAdd}"/>
+           Text="{Binding NoOfFlats}"/>
         <Label Content="FlatNo" HorizontalAlignment="Left" Height="34" Margin="68,228,0,0" VerticalAlignment="Top" Width="96" RenderTransformOrigin="3.695,1.874"/>
         <TextBox Name="FlatNoToAdd" Height="34" VerticalAlignment="Top" Margin="188,228,388,0" 
-           Text="{Binding FlatNoToAdd}"/>
+           Text="{Binding FlatNo}"/>
         <Label Content="HouseNo" HorizontalAlignment="Left" Height="34" Margin="68,150,0,0" VerticalAlignment="Top" Width="96" RenderTransformOrigin="3.695,1.874"/>
         <TextBox Name="HouseNoToAdd" Height="34" VerticalAlignment="Top" Margin="188,150,388,0" 
-           Text="{Binding HouseNoToAdd}"/>
+           Text="{Binding HouseNo}"/>
         <Button Content="Add" Command="{Binding Add}" HorizontalAlignment="Left" Height="31" Margin="188,352,0,0" VerticalAlignment="Top" Width="183" RenderTransformOrigin="-0.283,0.843"/>
         <Button Content="Back" Command="{Binding Back}" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="96" Height="34"/>
     </Grid>

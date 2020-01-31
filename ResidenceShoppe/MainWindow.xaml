@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:ResidenceShoppe"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        
         Width="1160.022"
         Height="706.283"
         mc:Ignorable="d"
@@ -51,14 +50,22 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Name="buttonEdit" Command="{Binding Path=DataContext.Edit, RelativeSource={RelativeSource AncestorType=DataGrid}}" Content="Edit"/>
+                            <Button Name="buttonEdit" Command="{Binding Path=DataContext.Edit, RelativeSource={RelativeSource AncestorType=DataGrid}}" Margin="0,0,1.2,0">
+                                <StackPanel Orientation="Horizontal" Height="23" Width="30">
+                                    <Image Source="Icons/Edit.png" Stretch="Fill" Height="22" Width="30"/>
+                                </StackPanel>
+                            </Button> 
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Name="buttonDelete" Command="{Binding Path=DataContext.Delete, RelativeSource={RelativeSource AncestorType=DataGrid}}" Content="Delete"/>
+                            <Button Name="buttonDelete" Command="{Binding Path=DataContext.Delete, RelativeSource={RelativeSource AncestorType=DataGrid}}">
+                                <StackPanel Orientation="Horizontal" Height="23" Width="30">
+                                    <Image Source="Icons/Delete.png" Stretch="Fill" Height="22" Width="30"/>
+                                </StackPanel>
+                            </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

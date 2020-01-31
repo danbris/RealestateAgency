@@ -2,14 +2,10 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Prism.Commands;
 using Prism.Mvvm;
-using Residence.DataLayer;
 using ResidenceBusinessLogic;
-using ResidenceBusinessLogic.DTO;
 
 namespace Residence.ViewModels
 {
@@ -19,7 +15,7 @@ namespace Residence.ViewModels
 
         private ObservableCollection<HousingViewModel> _houses;   //collection for houses
         private readonly HousingDataProvider _housingDataProvider; //instance of dataprovider
-        private HousingViewModel _selectedItem; //selected house 
+        private HousingViewModel _selectedItem; //selected housing 
         //navigation vars
         private IPageViewModel _currentPageViewModel;
         private List<IPageViewModel> _pageViewModels;
@@ -62,9 +58,9 @@ namespace Residence.ViewModels
 
         private ICommand _edit;
         
-        public ICommand Edit => _edit ?? (_edit = new DelegateCommand(EditExecuted));
+        public ICommand Edit => _edit ?? (_edit = new DelegateCommand(EditExecute));
 
-        private void EditExecuted()
+        private void EditExecute()
         {
             Mediator.Notify("GoToEditPage");
         }
@@ -85,9 +81,9 @@ namespace Residence.ViewModels
 
         private ICommand _goToAdd;
 
-        public ICommand Add => _goToAdd ?? (_goToAdd = new DelegateCommand(AddExecuted));
+        public ICommand Add => _goToAdd ?? (_goToAdd = new DelegateCommand(AddExecute));
 
-        private void AddExecuted()
+        private void AddExecute()
         {
             Mediator.Notify("GoToAddPage");
         }

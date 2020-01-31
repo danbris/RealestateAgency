@@ -3,11 +3,7 @@ using Prism.Mvvm;
 using Residence.DataLayer;
 using ResidenceBusinessLogic;
 using ResidenceBusinessLogic.DTO;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Residence.ViewModels
@@ -16,12 +12,12 @@ namespace Residence.ViewModels
     {
         #region Variables
 
-        private string _descriptionToAdd; //variable for description to handle edit/update 
-        private double _surfaceIToAdd; //variable for surface to handle edit/update 
-        private int _noOfRoomsToAdd;
-        private int _noOfFlatsToAdd;
-        private int _flatNoToAdd;
-        private int _houseNoToAdd;
+        private string _description; //variable for description to handle edit/update 
+        private double _surface; //variable for surface to handle edit/update 
+        private int _noOfRooms;
+        private int _noOfFlats;
+        private int _flatNo;
+        private int _houseNo;
         private readonly HousingDataProvider _housingDataProvider; //instance of dataprovider
         private Dictionary<HousingType, string> _housingTypes = new Dictionary<HousingType, string>(); //instance of housingType
         private HousingType _selectedHouseType;
@@ -40,36 +36,36 @@ namespace Residence.ViewModels
             get => _selectedHouseType;
             set => SetProperty(ref _selectedHouseType, value);
         }
-        public string DescriptionToAdd
+        public string Description
         {
-            get => _descriptionToAdd;
-            set => SetProperty(ref _descriptionToAdd, value);
+            get => _description;
+            set => SetProperty(ref _description, value);
         }
-        public double SurfaceToAdd
+        public double Surface
         {
-            get => _surfaceIToAdd;
-            set => SetProperty(ref _surfaceIToAdd, value);
+            get => _surface;
+            set => SetProperty(ref _surface, value);
         }
-        public int NoOfRoomsToAdd
+        public int NoOfRooms
         {
-            get => _noOfRoomsToAdd;
-            set => SetProperty(ref _noOfRoomsToAdd, value);
+            get => _noOfRooms;
+            set => SetProperty(ref _noOfRooms, value);
         }
 
-        public int NoOfFlatsToAdd
+        public int NoOfFlats
         {
-            get => _noOfFlatsToAdd;
-            set => SetProperty(ref _noOfFlatsToAdd, value);
+            get => _noOfFlats;
+            set => SetProperty(ref _noOfFlats, value);
         }
-        public int FlatNoToAdd
+        public int FlatNo
         {
-            get => _flatNoToAdd;
-            set => SetProperty(ref _flatNoToAdd, value);
+            get => _flatNo;
+            set => SetProperty(ref _flatNo, value);
         }
-        public int HouseNoToAdd
+        public int HouseNo
         {
-            get => _houseNoToAdd;
-            set => SetProperty(ref _houseNoToAdd, value);
+            get => _houseNo;
+            set => SetProperty(ref _houseNo, value);
         }
 
         #endregion
@@ -85,23 +81,23 @@ namespace Residence.ViewModels
 
             newHouse.HousingType = SelectedHousingType;
 
-            if (!string.IsNullOrEmpty(DescriptionToAdd))
-                newHouse.Description = DescriptionToAdd;
+            if (!string.IsNullOrEmpty(Description))
+                newHouse.Description = Description;
 
-            if (!double.IsNaN(SurfaceToAdd))
-                newHouse.Surface = SurfaceToAdd;
+            if (!double.IsNaN(Surface))
+                newHouse.Surface = Surface;
 
-            if (NoOfRoomsToAdd != 0)
-                newHouse.NoOfRooms = NoOfRoomsToAdd;
+            if (NoOfRooms != 0)
+                newHouse.NoOfRooms = NoOfRooms;
 
-            if (NoOfFlatsToAdd != 0)
-                newHouse.NoOfFlats = NoOfFlatsToAdd;
+            if (NoOfFlats != 0)
+                newHouse.NoOfFlats = NoOfFlats;
 
-            if (FlatNoToAdd != 0)
-                newHouse.FlatNo = FlatNoToAdd;
+            if (FlatNo != 0)
+                newHouse.FlatNo = FlatNo;
 
-            if (HouseNoToAdd != 0)
-                newHouse.HouseNo = HouseNoToAdd;
+            if (HouseNo != 0)
+                newHouse.HouseNo = HouseNo;
 
             _housingDataProvider.SaveHousing(newHouse);
 

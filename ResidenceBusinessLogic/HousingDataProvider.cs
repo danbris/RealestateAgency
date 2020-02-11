@@ -19,7 +19,7 @@ namespace ResidenceBusinessLogic
         #region Constructor
         public HousingDataProvider()
         {
-            _context = new Residence.DataLayer.ResidenceContext();
+            _context = new ResidenceContext();
         }
 
         #endregion
@@ -27,45 +27,14 @@ namespace ResidenceBusinessLogic
         #region CRUD Methods
         public HousingDto GetHouse(int id)
         {
-            return _context.Houses.Select(x => new HousingDto()
-            {
-                ID = x.ID,
-                Description = x.Description,
-                FlatNo = x.FlatNo,
-                HouseNo = x.HouseNo,
-                HousingType = x.HousingType,
-                NoOfFlats = x.NoOfFlats,
-                NoOfRooms = x.NoOfRooms,
-                Surface = x.Surface,
-                Comodities = x.Comodities.Select(y => new ComodityDto()
-                {
-                    ID = y.ID,
-                    Description = y.Description,
-                    Currency = y.Currency,
-                    Price = y.Price
-                }).ToList()
-            }).ToList().First(i => i.ID == id);
+            var houseModel = _context.Houses.SingleOrDefault(x => x.ID == id);
+            if (houseModel == null) return null;
+
+            return new HousingDto(houseModel);
         }
         public IList<HousingDto> GetHouses()
         {
-            return _context.Houses.Select(x => new HousingDto()
-            {
-                ID = x.ID,
-                Description = x.Description,
-                FlatNo = x.FlatNo,
-                HouseNo = x.HouseNo,
-                HousingType = x.HousingType,
-                NoOfFlats = x.NoOfFlats,
-                NoOfRooms = x.NoOfRooms,
-                Surface = x.Surface,
-                Comodities = x.Comodities.Select(y => new ComodityDto()
-                {
-                    ID = y.ID,
-                    Description = y.Description,
-                    Currency = y.Currency,
-                    Price = y.Price
-                }).ToList()
-            }).ToList();
+            return _context.Houses.Select(x => new HousingDto(x)).ToList();
         }
 
         public bool DeleteHousing(HousingDto housing)
@@ -83,13 +52,14 @@ namespace ResidenceBusinessLogic
             }
         }
 
-        public bool SaveHousing(HousingDto housing)
+        public bool SaveHousing(HousingDto housing, out string validationMessage)
         {
+            validationMessage = string.Empty;
             var operationSucceded = false;
             if (housing.ID > 0)
             {
                 //this is an update operation
-                operationSucceded = UpdateHousing(housing);
+                operationSucceded = UpdateHousing(housing, out validationMessage);
             }
             else
             {
@@ -104,23 +74,11 @@ namespace ResidenceBusinessLogic
 
         #region Private Methods
 
-        private Housing DtoToEntity(HousingDto housing)
-        {
-            var entityObject = new Housing();
-
-            entityObject.HousingType = housing.HousingType;
-            entityObject.Description = housing.Description;
-            entityObject.Surface = housing.Surface;
-            entityObject.NoOfRooms = housing.NoOfRooms;
-            entityObject.NoOfFlats = housing.NoOfFlats;
-            entityObject.FlatNo = housing.FlatNo;
-            entityObject.HouseNo = housing.HouseNo;
-            return entityObject;
-        }
-
         private bool AddNewHousing(HousingDto housing)
         {
-            var result = _context.Houses.Add(DtoToEntity(housing));
+            var entity = new Housing();
+            housing.UpdateEntity(entity);
+            var result = _context.Houses.Add(entity);
             if (result != null)
             {
                 _context.SaveChanges();
@@ -132,24 +90,34 @@ namespace ResidenceBusinessLogic
             }
         }
 
-        private bool UpdateHousing(HousingDto housing)
+        private bool UpdateHousing(HousingDto housing, out string validationResponse)
         {
-            var result = _context.Houses.SingleOrDefault(b => b.ID == housing.ID);
-            if (result != null)
+            var entity = _context.Houses.SingleOrDefault(b => b.ID == housing.ID);
+            validationResponse = ValidateData(housing);
+            if (entity != null && string.IsNullOrEmpty(validationResponse))
             {
-                result.Description = housing.Description;
-                result.Surface = housing.Surface;
-                result.NoOfRooms = housing.NoOfRooms;
-                result.NoOfFlats = housing.NoOfFlats;
-                result.FlatNo = housing.FlatNo;
-                result.HouseNo = housing.HouseNo;
+                //validate values for min/max, NaN..., or whatever else could brake the data layer
+                housing.UpdateEntity(entity);
+                //result.Description = housing.Description;
+                //result.Surface = housing.Surface;
+                //result.NoOfRooms = housing.NoOfRooms;
+                //result.NoOfFlats = housing.NoOfFlats;
+                //result.FlatNo = housing.FlatNo;
+                //result.HouseNo = housing.HouseNo;
                 _context.SaveChanges();
                 return true;
             }
             else 
-            { 
+            {
                 return false; 
             }
+        }
+
+        private string ValidateData(HousingDto housingModel)
+        {
+            if (double.IsNaN(housingModel.Surface) || double.IsInfinity(housingModel.Surface)) return "Invalid Surface";
+
+            return string.Empty;
         }
 
         #endregion

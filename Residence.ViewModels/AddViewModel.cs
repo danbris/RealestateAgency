@@ -81,6 +81,11 @@ namespace Residence.ViewModels
 
             newHouse.HousingType = SelectedHousingType;
 
+            //the VM should validate only if there is a minimum amount of information to be saved
+            // or if there are any other UI constraints.
+            // the business point of view validation should be in BusinessLogic
+
+
             if (!string.IsNullOrEmpty(Description))
                 newHouse.Description = Description;
 
@@ -108,6 +113,8 @@ namespace Residence.ViewModels
         public ICommand Back => _backToMainPage ?? (_backToMainPage = new DelegateCommand(BackToMainPage));
         private void BackToMainPage() 
         {
+            //what if I Notify("GoToEditPage")
+            //I should not have an option to go somewhere else
             Mediator.Notify("GoToMainPage");
         }
 

@@ -75,7 +75,12 @@ namespace Residence.ViewModels
             selectedHouseDto.FlatNo = FlatNo;
             selectedHouseDto.HouseNo = HouseNo;
 
-            _housingDataProvider.SaveHousing(selectedHouseDto);
+            if(!_housingDataProvider.SaveHousing(selectedHouseDto, out string validationMessage))
+            {
+                //show validationMessage to user and wait for fixes
+                return;
+            }
+
             BackToMainPage();
         }
 

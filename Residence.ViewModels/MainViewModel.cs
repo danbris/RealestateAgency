@@ -95,7 +95,8 @@ namespace Residence.ViewModels
         }
 
         private void GoToMainPage(Object obj)
-        {
+        {//it's not a good idea to base something on indexes
+            // what if you forget to remove one item?
             ChangeViewModel(PageViewModels[0]);
             PageViewModels.Remove(PageViewModels[1]);
             LoadData();
@@ -110,6 +111,9 @@ namespace Residence.ViewModels
 
             CurrentPageViewModel = PageViewModels[0];
 
+            //avoid string literals - don't use Properties, methods or class name as literals
+            //or extract string literals to constants
+            //reason: if you change GoToEditPage method name, you won't detect all places where "GoToEditPage" is used, to rename everything
             Mediator.Subscribe("GoToEditPage", GoToEditPage);
             Mediator.Subscribe("GoToAddPage", GoToAddPage);
             Mediator.Subscribe("GoToMainPage", GoToMainPage);

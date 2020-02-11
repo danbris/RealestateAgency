@@ -43,6 +43,7 @@ namespace ResidenceBusinessLogic.DTO
             }).ToList();
         }
 
+        // add all properties here
         public void UpdateEntity(Housing entity)
         {
             entity.Description = Description;

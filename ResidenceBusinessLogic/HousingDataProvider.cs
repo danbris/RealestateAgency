@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ResidenceBusinessLogic.DTO;
 using Residence.DataLayer;
 
@@ -12,7 +9,7 @@ namespace ResidenceBusinessLogic
     {
         #region Variables
 
-        private Residence.DataLayer.ResidenceContext _context;
+        private ResidenceContext _context;
 
         #endregion
 
@@ -96,7 +93,7 @@ namespace ResidenceBusinessLogic
             validationResponse = ValidateData(housing);
             if (entity != null && string.IsNullOrEmpty(validationResponse))
             {
-                //validate values for min/max, NaN..., or whatever else could brake the data layer
+                //validate values for min/max, NaN..., or whatever else could break the data layer
                 housing.UpdateEntity(entity);
                 //result.Description = housing.Description;
                 //result.Surface = housing.Surface;
@@ -113,6 +110,7 @@ namespace ResidenceBusinessLogic
             }
         }
 
+        //you have to add validations for all properties here
         private string ValidateData(HousingDto housingModel)
         {
             if (double.IsNaN(housingModel.Surface) || double.IsInfinity(housingModel.Surface)) return "Invalid Surface";
